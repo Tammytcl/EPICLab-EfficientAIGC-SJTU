@@ -9,38 +9,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css"/>
     <link rel="stylesheet" href="utils/cssReset.css"/>
     <link rel="stylesheet" href="utils/css_layout.css"/>
-    <title>Publications - 你的名字</title>
+    <title>Publications</title>
     <meta name="description" content="Publications page description">
     <meta name="keywords" content="publications, research, papers">
 </head>
 <body>
-<div id="sidebar">
-
-  <div id="navigation">
-    <a class="nav_item active" href="index.html">
-      <i class="icon icon-home icon-white"></i> &nbsp; About
-    </a>
-    <a class="nav_item" href="publications.html">
-      <i class="icon icon-th-large icon-white icon-list"></i> &nbsp; Publications
-    </a>
-    <a class="nav_item" href="work1.html">2024-ToCa</a>
-    <a class="nav_item" href="work2.html">2025-TaylorSeer</a>
-    <a class="nav_item" href="work3.html">2025-Work3</a>
-  </div>
-</div>
-
-
-<div id="main">
-  <div class="content">
-    <div class="title">
-      <h1>Publications</h1>
+  <div id="sidebar">
+    <div id="navigation">
+      <a class="nav_item active" href="index.html">
+        <i class="icon icon-home icon-white"></i> &nbsp; About
+      </a>
+      <a class="nav_item" href="publications.html">
+        <i class="icon icon-th-large icon-white icon-list"></i> &nbsp; Publications
+      </a>
+      <a class="nav_item" href="work1.html">2024-ToCa</a>
+      <a class="nav_item" href="work2.html">2025-TaylorSeer</a>
+      <a class="nav_item" href="work3.html">2025-Work3</a>
     </div>
+  </div>
+
+  <div class="content publications">
+    * indicates corresponding authors.
     <ol>
-      <li>Preprint 1</li>
-      <li>Publication 2</li>
+      <!-- Preprint Section -->
+      <li>
+        <div class="imgblock">
+          <img src="camera_ready/glover.gif" alt="GLOVER Image">
+        </div>
+        <span class="title">GLOVER: Generalizable Open-Vocabulary Affordance Reasoning for Task-Oriented Grasping</span>
+        <div class="info text-success italic">
+          Teli Ma, Zifan Wang, Jiaming Zhou, Mengmeng Wang, <span style="font-weight:bold">Junwei Liang*</span>
+        </div>
+
+        <div class="stuff">
+          [<a href="https://arxiv.org/pdf/2411.12286v1">Paper</a>]
+          [<a href="https://teleema.github.io/projects/GLOVER/">Project page</a>]
+          [<a href="https://github.com/TeleeMa/Sigma-Agent">Code</a>]
+        </div>
+        <div style="clear:both"></div>
+      </li>
+
+      <!-- Another Example Publication -->
+      <li>
+        <div class="imgblock">
+          <img src="camera_ready/robotics_article.gif" alt="Robotics Research">
+        </div>
+        <span class="title">Robotics Research on Advanced Grasping Techniques</span>
+        <div class="info text-success italic">
+          John Doe, Jane Smith, <span style="font-weight:bold">Alex Johnson*</span>
+        </div>
+
+        <div class="stuff">
+          [<a href="https://example.com/robotics_research.pdf">Paper</a>]
+          [<a href="https://example.com/robotics_project">Project Page</a>]
+          [<a href="https://github.com/robotics/advanced_grasping">Code</a>]
+        </div>
+        <div style="clear:both"></div>
+      </li>
     </ol>
   </div>
-</div>
 
 </body>
 </html>
