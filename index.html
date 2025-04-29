@@ -68,6 +68,62 @@
             transform: translateY(0) !important;
         }
 
+        /* 子菜单样式 */
+        .sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 20px;
+        }
+
+        .sub-menu.active {
+            max-height: 500px;
+        }
+
+        .sub-menu .sub-item {
+            padding: 10px 15px 10px 30px;
+            margin: 5px 15px;
+            border-radius: 8px;
+            display: block;
+            color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.05);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sub-menu .sub-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .sub-menu .sub-item.active {
+            background: rgba(77,182,224,0.1);
+            color: white;
+            border-left: 3px solid #4db6e0;
+            padding-left: 27px;
+        }
+
+        .has-submenu {
+            position: relative;
+        }
+
+        .has-submenu::after {
+            content: '\f105';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+
+        .has-submenu.active::after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
         @media (max-width: 768px) {
             #sidebar-toggle {
                 display: flex;
@@ -126,18 +182,20 @@
             <a class="nav_item active" href="index.html">
                 <i class="fas fa-home icon-white"></i> &nbsp; 关于我们
             </a>
-            <a class="nav_item" href="publications.html">
+            <a class="nav_item has-submenu" href="publications.html" id="research-menu">
                 <i class="fas fa-book icon-white"></i> &nbsp; 研究成果
             </a>
-            <a class="nav_item" href="work1.html">
-                <i class="fas fa-image icon-white"></i> &nbsp; 2024-ToCa
-            </a>
-            <a class="nav_item" href="work2.html">
-                <i class="fas fa-film icon-white"></i> &nbsp; 2025-TaylorSeer
-            </a>
-            <a class="nav_item" href="work3.html">
-                <i class="fas fa-code icon-white"></i> &nbsp; 2025-Work3
-            </a>
+            <div class="sub-menu" id="research-submenu">
+                <a class="sub-item" href="work1.html">
+                    <i class="fas fa-image icon-white"></i> &nbsp; 2024-ToCa
+                </a>
+                <a class="sub-item" href="work2.html">
+                    <i class="fas fa-film icon-white"></i> &nbsp; 2025-TaylorSeer
+                </a>
+                <a class="sub-item" href="work3.html">
+                    <i class="fas fa-code icon-white"></i> &nbsp; 2025-Work3
+                </a>
+            </div>
             <a class="nav_item" href="contact.html">
                 <i class="fas fa-envelope icon-white"></i> &nbsp; 联系我们
             </a>
@@ -254,6 +312,38 @@
             } else {
                 main.classList.remove('sidebar-active');
             }
+        });
+
+        // 子菜单功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const researchMenu = document.getElementById('research-menu');
+            const researchSubmenu = document.getElementById('research-submenu');
+
+            // 检查当前页面URL，如果是研究成果相关页面，自动展开子菜单
+            const currentUrl = window.location.href;
+            if (currentUrl.includes('publications') || currentUrl.includes('work1') ||
+                currentUrl.includes('work2') || currentUrl.includes('work3')) {
+                researchMenu.classList.add('active');
+                researchSubmenu.classList.add('active');
+
+                // 如果是具体的项目页面，设置对应的子菜单项为活动状态
+                if (currentUrl.includes('work1')) {
+                    document.querySelector('a[href="work1.html"]').classList.add('active');
+                } else if (currentUrl.includes('work2')) {
+                    document.querySelector('a[href="work2.html"]').classList.add('active');
+                } else if (currentUrl.includes('work3')) {
+                    document.querySelector('a[href="work3.html"]').classList.add('active');
+                } else if (currentUrl.includes('publications')) {
+                    researchMenu.classList.add('active');
+                }
+            }
+
+            // 点击研究成果菜单时展开/收起子菜单
+            researchMenu.addEventListener('click', function(e) {
+                e.preventDefault(); // 阻止默认链接行为
+                this.classList.toggle('active');
+                researchSubmenu.classList.toggle('active');
+            });
         });
 
         // 添加滚动动画效果

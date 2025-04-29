@@ -200,6 +200,78 @@ div.content div.float-right {
     color: #4db6e0;
 }
 
+/* 子菜单样式 */
+.sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 20px;
+}
+
+.sub-menu.active {
+    max-height: 500px;
+}
+
+.sub-menu .sub-item {
+    padding: 10px 15px 10px 30px;
+    margin: 5px 15px 5px 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.05);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sub-menu .sub-item i {
+    margin-right: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    transition: all 0.3s ease;
+}
+
+.sub-menu .sub-item:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transform: translateX(5px);
+}
+
+.sub-menu .sub-item:hover i {
+    color: #4db6e0;
+}
+
+.sub-menu .sub-item.active {
+    background: rgba(77,182,224,0.1);
+    color: white;
+    border-left: 2px solid #4db6e0;
+    padding-left: 28px;
+}
+
+.sub-menu .sub-item.active i {
+    color: #4db6e0;
+}
+
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu::after {
+    content: '\f105';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.has-submenu.active::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+
 /* 添加底部版权信息 */
 #sidebar .copyright {
     position: absolute;
@@ -325,7 +397,7 @@ div.content div.float-right {
 }
 
 .timeline-content {
-    margin-left: 80px;
+    margin-left: 100px;
     padding: 20px;
     background: white;
     border-radius: 8px;
@@ -395,7 +467,6 @@ div.content div.float-right {
     font-size: 14px;
     margin: 0;
 }
-
 /* 响应式设计 */
 @media (max-width: 992px) {
     #sidebar {
