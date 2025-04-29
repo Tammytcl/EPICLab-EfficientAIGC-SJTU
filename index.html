@@ -43,18 +43,20 @@
             <a class="nav_item active" href="index.html">
                 <i class="fas fa-home icon-white"></i> &nbsp; 关于我们
             </a>
-            <a class="nav_item" href="publications.html">
+            <!-- 研究成果菜单项（带子菜单） -->
+            <div class="nav_item" id="publications-menu">
                 <i class="fas fa-book icon-white"></i> &nbsp; 研究成果
-            </a>
-            <a class="nav_item" href="work1.html">
-                <i class="fas fa-image icon-white"></i> &nbsp; 2024-ToCa
-            </a>
-            <a class="nav_item" href="work2.html">
-                <i class="fas fa-film icon-white"></i> &nbsp; 2025-TaylorSeer
-            </a>
-            <a class="nav_item" href="work3.html">
-                <i class="fas fa-code icon-white"></i> &nbsp; 2025-Work3
-            </a>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+
+            <!-- 子菜单容器 -->
+            <div class="submenu-container" id="publications-submenu">
+                <a class="submenu-item" href="publications.html">所有研究成果</a>
+                <a class="submenu-item" href="work1.html">2024-ToCa</a>
+                <a class="submenu-item" href="work2.html">2025-TaylorSeer</a>
+                <a class="submenu-item" href="work3.html">2025-Work3</a>
+            </div>
+
             <a class="nav_item" href="contact.html">
                 <i class="fas fa-envelope icon-white"></i> &nbsp; 联系我们
             </a>
@@ -115,9 +117,9 @@
         </div>
 
         <div class="content">
-            <p>2025年4月 - </p>
-            <p>2025年3月 - </p>
-            <p>2024年12月 - </p>
+            <p>2025年4月 - 我们的TaylorSeer模型被选为ICCV 2025的亮点论文</p>
+            <p>2025年3月 - EPIC实验室与高通公司达成合作，共同研发移动端AIGC技术</p>
+            <p>2024年12月 - ToCa项目获得国家自然科学基金特别资助</p>
         </div>
 
         <!-- 团队成员 -->
@@ -128,20 +130,28 @@
         <div class="content">
             <div class="team-grid">
                 <div class="team-member">
-                    <h3>Jiacheng Liu</h3>
+                    <img src="resources/member1.jpg" alt="刘家成" />
+                    <h3>刘家成</h3>
                     <p>高效AIGC算法</p>
                 </div>
 
                 <div class="team-member">
-                    <h3>Chang Zou</h3>
+                    <img src="resources/member2.jpg" alt="邹畅" />
+                    <h3>邹畅</h3>
                     <p>视频生成技术</p>
                 </div>
 
+                <div class="team-member">
+                    <img src="resources/member3.jpg" alt="李明" />
+                    <h3>李明</h3>
+                    <p>研究生</p>
+                </div>
 
-
-
-
-
+                <div class="team-member">
+                    <img src="resources/member4.jpg" alt="王芳" />
+                    <h3>王芳</h3>
+                    <p>博士生</p>
+                </div>
             </div>
         </div>
     </div>
@@ -150,6 +160,39 @@
         // 侧边栏切换功能
         document.getElementById('sidebar-toggle').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // 子菜单展开/收起功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const publicationsMenu = document.getElementById('publications-menu');
+            const publicationsSubmenu = document.getElementById('publications-submenu');
+
+            // 默认收起子菜单
+            publicationsSubmenu.classList.remove('open');
+
+            // 点击研究成果菜单项时展开/收起子菜单
+            publicationsMenu.addEventListener('click', function() {
+                publicationsSubmenu.classList.toggle('open');
+                publicationsMenu.classList.toggle('expanded');
+            });
+
+            // 根据当前页面URL设置活跃状态
+            const currentUrl = window.location.href;
+            const menuItems = document.querySelectorAll('#navigation a');
+
+            menuItems.forEach(item => {
+                if (currentUrl.includes(item.getAttribute('href'))) {
+                    item.classList.add('active');
+
+                    // 如果当前页面是子菜单项，自动展开父菜单
+                    if (item.classList.contains('submenu-item')) {
+                        publicationsSubmenu.classList.add('open');
+                        publicationsMenu.classList.add('expanded');
+                    }
+                } else {
+                    item.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>

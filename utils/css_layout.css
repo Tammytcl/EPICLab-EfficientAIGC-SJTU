@@ -147,13 +147,14 @@ div.content div.float-right {
     transform: scaleX(1);
 }
 
-/* 导航菜单优化 */
+/* 导航菜单优化 - 添加子菜单支持 */
 #navigation {
     padding: 15px 0;
 }
 
 /* 导航项基本样式 */
-#navigation > a.nav_item {
+#navigation > a.nav_item,
+#navigation > div.nav_item {
     display: flex;
     align-items: center;
     color: rgba(255,255,255,0.75);
@@ -170,34 +171,94 @@ div.content div.float-right {
 }
 
 /* 导航项图标 */
-#navigation > a.nav_item i {
+#navigation > a.nav_item i,
+#navigation > div.nav_item i {
     margin-right: 10px;
     font-size: 16px;
     transition: all 0.3s ease;
 }
 
 /* 悬停效果 */
-#navigation > a.nav_item:hover {
+#navigation > a.nav_item:hover,
+#navigation > div.nav_item:hover {
     background: rgba(255,255,255,0.15);
     color: white;
     transform: translateX(5px);
 }
 
 /* 导航项悬停时的图标颜色 */
-#navigation > a.nav_item:hover i {
+#navigation > a.nav_item:hover i,
+#navigation > div.nav_item:hover i {
     color: #4db6e0;
 }
 
 /* 活跃状态 */
-#navigation > a.nav_item.active {
+#navigation > a.nav_item.active,
+#navigation > div.nav_item.active {
     background: rgba(77,182,224,0.15);
     color: white;
     border-left: 3px solid #4db6e0;
     padding-left: 22px; /* 补偿边框宽度 */
 }
 
-#navigation > a.nav_item.active i {
+#navigation > a.nav_item.active i,
+#navigation > div.nav_item.active i {
     color: #4db6e0;
+}
+
+/* 子菜单容器 */
+.submenu-container {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    margin: 0 15px;
+}
+
+/* 展开的子菜单 */
+.submenu-container.open {
+    max-height: 300px; /* 足够高以容纳所有子菜单项 */
+    transition: max-height 0.5s ease-in;
+}
+
+/* 子菜单项 */
+.submenu-item {
+    display: block;
+    padding: 10px 10px 10px 45px; /* 左侧缩进 */
+    margin: 5px 0;
+    color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    position: relative;
+}
+
+/* 子菜单项悬停效果 */
+.submenu-item:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* 子菜单项活跃状态 */
+.submenu-item.active {
+    background: rgba(77,182,224,0.1);
+    color: #4db6e0;
+    border-left: 2px solid #4db6e0;
+}
+
+/* 切换按钮样式 */
+.toggle-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+/* 展开状态的切换按钮 */
+.nav_item.expanded .toggle-icon {
+    transform: translateY(-50%) rotate(180deg);
 }
 
 /* 添加底部版权信息 */
