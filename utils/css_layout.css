@@ -73,21 +73,41 @@
   }
 
 
+/* 导航菜单基础样式 */
+#navigation {
+    padding-top: 20px;
+}
 
-  #navigation{
-    padding-top: 10px;
-    margin-top:  10px;
-  }
-  #navigation > a.nav_item{
+#navigation > a.nav_item {
     display: block;
     color: white;
     cursor: pointer;
-    padding: 10px 30px;
-    background: #0765A0;
-  }
-  #navigation > a.nav_item:hover{
-    background: #3D7EB0;
-  }
+    padding: 12px 25px;
+    margin: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.05);
+    position: relative;
+    border-left: 3px solid transparent;
+    font-weight: 500;
+    font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 悬停效果 */
+#navigation > a.nav_item:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 活跃状态 - 凸起效果 */
+#navigation > a.nav_item.active {
+    background: rgba(255,255,255,0.2);
+    border-left: 3px solid #4db6e0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
 
 
   /*----------------------------*/
