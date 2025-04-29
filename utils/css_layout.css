@@ -26,69 +26,76 @@
     }
 
 
-    #sidebar{
-        position: absolute;
-        top: 0;
-        left: 0;
-        overflow: auto;
-        background: linear-gradient(135deg, #0765A0 0%, #0ab1d8 100%);
-        width:250px;
-        height: 100%;
-    }
-    #sidebar > img.me{
-        max-height:180px;
-        max-width:180px;
-        margin:20px 35px;
-        border-radius: 50%;
-    }
-  #sidebar div.info{
+/* 侧边栏样式 */
+#sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background: #1a2035; /* 深色背景 */
+    width: 250px;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+#sidebar > img.me {
+    max-height: 180px;
+    max-width: 180px;
+    margin: 20px 35px;
+    border-radius: 50%;
+}
+
+#sidebar div.info {
     color: white;
     text-align: center;
-  }
-  #sidebar div.info > .name{
-      font-family: "Lato", Helvetica, Arial, sans-serif;
-      font-size: 18px;
-      font-weight: bold;
-      font-style: italic;
-  }
-  #sidebar div.info > .name_chinese{
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 18px;
-      font-weight: bold;
-  }
-  #sidebar div.info > .email{
-      font-size: 14px;
-      font-family: "Lato", Helvetica, Arial, sans-serif;
-      font-style: italic;
-      font-weight: 400;
-  }
-  #sidebar div.info > .link{
+}
+
+#sidebar div.info > .name {
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#sidebar div.info > .name_chinese {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#sidebar div.info > .email {
+    font-size: 14px;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+#sidebar div.info > .link {
     font-size: 14px;
     font-weight: 500;
+}
 
-  }
-  #sidebar div.info > .link > a{
+#sidebar div.info > .link > a {
     color: white;
     text-decoration: underline;
-  }
-
+}
 
 /* 导航菜单基础样式 */
 #navigation {
     padding-top: 20px;
 }
 
+/* 导航项基本样式 */
 #navigation > a.nav_item {
     display: block;
-    color: white;
+    color: #1a2035; /* 深色文字 */
     cursor: pointer;
-    padding: 12px 25px;
+    padding: 12px 20px;
     margin: 8px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
-    background: rgba(255,255,255,0.05);
+    background: #f0f2f5; /* 浅色背景 */
     position: relative;
-    border-left: 3px solid transparent;
     font-weight: 500;
     font-size: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -96,19 +103,23 @@
 
 /* 悬停效果 */
 #navigation > a.nav_item:hover {
-    background: rgba(255,255,255,0.15);
+    background: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* 活跃状态 - 凸起效果 */
 #navigation > a.nav_item.active {
-    background: rgba(255,255,255,0.2);
+    background: #ffffff;
     border-left: 3px solid #4db6e0;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
+/* 图标样式适配新的浅色按钮 */
+#navigation .icon-white {
+    color: #1a2035; /* 图标颜色改为深色 */
+}
 
   /*----------------------------*/
 
