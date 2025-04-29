@@ -287,17 +287,17 @@ div.content div.float-right {
     color: #333;
 }
 
-/* 保留原有时间线样式，稍作优化 */
+/* 保留原有时间线样式，修复重叠问题 */
 .timeline {
     position: relative;
-    padding-left: 30px; /* 保持原有的左侧间距 */
+    padding-left: 50px; /* 增加左侧间距，为日期标签留出空间 */
     margin: 20px 0;
 }
 
 .timeline:before {
     content: "";
     position: absolute;
-    left: 10px;
+    left: 20px; /* 调整线的位置 */
     top: 0;
     bottom: 0;
     width: 2px; /* 保持原有的线宽 */
@@ -306,14 +306,15 @@ div.content div.float-right {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 30px; /* 保持原有间距 */
+    margin-bottom: 40px; /* 略微增加间距 */
+    padding-top: 10px; /* 添加顶部内边距，避免与日期重叠 */
 }
 
 .timeline-date {
     position: absolute;
-    left: -30px;
+    left: -40px; /* 调整日期位置 */
     top: 0;
-    width: 60px;
+    width: 70px; /* 增加宽度以适应更多文字 */
     padding: 5px;
     background: #0765A0; /* 保持原有的颜色 */
     color: white;
@@ -321,15 +322,18 @@ div.content div.float-right {
     border-radius: 4px;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 轻微增强阴影效果 */
+    z-index: 2; /* 确保日期在最上层 */
 }
 
 .timeline-content {
-    margin-left: 50px;
+    margin-left: 30px; /* 调整左侧边距，避免重叠 */
     padding: 15px;
     background: white;
     border-radius: 4px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.1); /* 轻微增强阴影效果 */
     transition: all 0.3s ease;
+    position: relative; /* 设置为相对定位 */
+    z-index: 1; /* 确保内容在时间线上方，但在日期下方 */
 }
 
 /* 添加简单的悬停效果，但保持原有风格 */
