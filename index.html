@@ -14,82 +14,9 @@
     <meta name="description" content="EPIC实验室 - 高效智能计算研究">
     <meta name="keywords" content="人工智能,AIGC,SJTU,文本到图像,文本到视频">
     <title>EPIC实验室 | 智能计算研究</title>
-
-    <style>
-        /* 页面加载动画 */
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a2035;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255,255,255,0.2);
-            border-top: 5px solid #4db6e0;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* 侧边栏切换按钮（响应式） */
-        #sidebar-toggle {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 200;
-            background: #1a2035;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        @media (max-width: 768px) {
-            #sidebar-toggle {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            #sidebar {
-                transform: translateX(-100%);
-            }
-
-            #sidebar.active {
-                transform: translateX(0);
-            }
-
-            #main {
-                left: 0;
-            }
-        }
-    </style>
 </head>
 
 <body>
-    <!-- 加载动画 -->
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-    </div>
-
     <!-- 响应式侧边栏切换按钮 -->
     <button id="sidebar-toggle">
         <i class="fas fa-bars"></i>
@@ -156,34 +83,27 @@
             <p>本网站作为我们在高效AIGC模型研究中的项目中心，展示我们的最新研究成果和进展。</p>
         </div>
 
-        <!-- 时间线 -->
+        <!-- 时间线 - 保持原有结构 -->
         <div class="title">
             <a class="title_link" id="Timeline">研究历程</a>
         </div>
 
+        <!-- 保持原有时间线的HTML结构 -->
         <div class="content">
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date">2024 ICLR</div>
                     <div class="timeline-content">
-                        <h3><i class="fas fa-award"></i> ToCa项目</h3>
-                        <p>开发了轻量级文本到图像生成模型，显著降低了计算成本同时保持了图像质量。通过创新的Token压缩算法，我们将推理速度提高了3倍，同时模型大小减少了40%。</p>
+                        <h3>ToCa项目</h3>
+                        <p>开发了轻量级文本到图像生成模型，显著降低了计算成本...</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-date">2025 ICCV</div>
                     <div class="timeline-content">
-                        <h3><i class="fas fa-video"></i> TaylorSeer项目</h3>
-                        <p>专注于高效视频生成技术，实现了长视频的流畅生成。我们的TaylorSeer模型使用自适应帧预测技术，大幅降低了计算资源需求，并支持高达10分钟的高质量视频生成，为实时AIGC应用开辟了新的可能性。</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">2025 Q3</div>
-                    <div class="timeline-content">
-                        <h3><i class="fas fa-rocket"></i> 即将推出</h3>
-                        <p>新的突破性研究正在进行中，敬请期待！</p>
+                        <h3>TaylorSeer项目</h3>
+                        <p>专注于高效视频生成技术，实现了长视频的流畅生成...</p>
                     </div>
                 </div>
             </div>
@@ -235,42 +155,9 @@
     </div>
 
     <script>
-        // 页面加载完成后隐藏加载动画
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.querySelector('.loader-wrapper').style.opacity = '0';
-                document.querySelector('.loader-wrapper').style.visibility = 'hidden';
-            }, 500);
-        });
-
         // 侧边栏切换功能
         document.getElementById('sidebar-toggle').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('active');
-        });
-
-        // 添加滚动动画效果
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.timeline-item, .team-member').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.5s ease-out';
-                observer.observe(el);
-            });
-
-            document.addEventListener('scroll', function() {
-                document.querySelectorAll('.animated').forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                });
-            });
         });
     </script>
 </body>
