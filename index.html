@@ -38,27 +38,51 @@
             <div class="link"><a href="https://www.sjtu.edu.cn" target="_blank">查看实验室主页</a></div>
         </div>
 
-        <!-- 导航菜单 -->
+        <!-- 导航菜单 - 更新结构 -->
         <div id="navigation">
+            <!-- 关于我们 - 主菜单项 -->
             <a class="nav_item active" href="index.html">
-                <i class="fas fa-home icon-white"></i> &nbsp; 关于我们
+                <div class="nav-item-content">
+                    <i class="fas fa-home icon-white"></i>
+                    <span>关于我们</span>
+                </div>
             </a>
-            <!-- 研究成果菜单项（带子菜单） -->
+
+            <!-- 研究成果 - 主菜单项（带子菜单） -->
             <div class="nav_item" id="publications-menu">
-                <i class="fas fa-book icon-white"></i> &nbsp; 研究成果
-                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+                <div class="nav-item-content">
+                    <i class="fas fa-flask icon-white"></i>
+                    <span>研究成果</span>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
             </div>
 
-            <!-- 子菜单容器 -->
+            <!-- 研究成果子菜单 -->
             <div class="submenu-container" id="publications-submenu">
-                <a class="submenu-item" href="publications.html">所有研究成果</a>
-                <a class="submenu-item" href="work1.html">2024-ToCa</a>
-                <a class="submenu-item" href="work2.html">2025-TaylorSeer</a>
-                <a class="submenu-item" href="work3.html">2025-Work3</a>
+                <a class="submenu-item" href="publications.html">
+                    <i class="fas fa-list-ul"></i>
+                    <span>全部成果</span>
+                </a>
+                <a class="submenu-item" href="work1.html">
+                    <i class="fas fa-image"></i>
+                    <span>2024-ToCa</span>
+                </a>
+                <a class="submenu-item" href="work2.html">
+                    <i class="fas fa-film"></i>
+                    <span>2025-TaylorSeer</span>
+                </a>
+                <a class="submenu-item" href="work3.html">
+                    <i class="fas fa-code"></i>
+                    <span>2025-Work3</span>
+                </a>
             </div>
 
+            <!-- 联系我们 - 主菜单项 -->
             <a class="nav_item" href="contact.html">
-                <i class="fas fa-envelope icon-white"></i> &nbsp; 联系我们
+                <div class="nav-item-content">
+                    <i class="fas fa-envelope icon-white"></i>
+                    <span>联系我们</span>
+                </div>
             </a>
         </div>
 
@@ -157,42 +181,96 @@
     </div>
 
     <script>
-        // 侧边栏切换功能
-        document.getElementById('sidebar-toggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-        });
-
-        // 子菜单展开/收起功能
+        // 侧边栏功能增强脚本
         document.addEventListener('DOMContentLoaded', function() {
+            // 侧边栏切换功能
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    document.getElementById('sidebar').classList.toggle('active');
+                });
+            }
+
+            // 子菜单展开/收起功能
             const publicationsMenu = document.getElementById('publications-menu');
             const publicationsSubmenu = document.getElementById('publications-submenu');
 
             // 默认收起子菜单
-            publicationsSubmenu.classList.remove('open');
+            if (publicationsSubmenu) {
+                publicationsSubmenu.classList.remove('open');
+            }
 
             // 点击研究成果菜单项时展开/收起子菜单
-            publicationsMenu.addEventListener('click', function() {
-                publicationsSubmenu.classList.toggle('open');
-                publicationsMenu.classList.toggle('expanded');
-            });
+            if (publicationsMenu && publicationsSubmenu) {
+                publicationsMenu.addEventListener('click', function(e) {
+                    publicationsSubmenu.classList.toggle('open');
+                    publicationsMenu.classList.toggle('expanded');
+                    e.stopPropagation(); // 阻止冒泡
+                });
+            }
 
-            // 根据当前页面URL设置活跃状态
+            // 设置活跃状态
+            setActiveMenuItems();
+
+            // 如果当前页面URL包含子菜单项的href，自动展开子菜单
+            autoExpandSubmenu();
+        });
+
+        // 设置活跃菜单项
+        function setActiveMenuItems() {
             const currentUrl = window.location.href;
             const menuItems = document.querySelectorAll('#navigation a');
+            const publicationsMenu = document.getElementById('publications-menu');
+            let isSubMenuItemActive = false;
 
             menuItems.forEach(item => {
-                if (currentUrl.includes(item.getAttribute('href'))) {
+                const href = item.getAttribute('href');
+                if (href && currentUrl.includes(href)) {
                     item.classList.add('active');
 
-                    // 如果当前页面是子菜单项，自动展开父菜单
+                    // 如果是子菜单项，标记为活跃
                     if (item.classList.contains('submenu-item')) {
-                        publicationsSubmenu.classList.add('open');
-                        publicationsMenu.classList.add('expanded');
+                        isSubMenuItemActive = true;
                     }
                 } else {
                     item.classList.remove('active');
                 }
             });
+
+            // 如果有子菜单项活跃，也设置父菜单为活跃
+            if (isSubMenuItemActive && publicationsMenu) {
+                publicationsMenu.classList.add('active');
+            }
+        }
+
+        // 自动展开子菜单
+        function autoExpandSubmenu() {
+            const currentUrl = window.location.href;
+            const submenuItems = document.querySelectorAll('.submenu-item');
+            const publicationsMenu = document.getElementById('publications-menu');
+            const publicationsSubmenu = document.getElementById('publications-submenu');
+
+            for (let item of submenuItems) {
+                const href = item.getAttribute('href');
+                if (href && currentUrl.includes(href)) {
+                    if (publicationsSubmenu) {
+                        publicationsSubmenu.classList.add('open');
+                    }
+                    if (publicationsMenu) {
+                        publicationsMenu.classList.add('expanded');
+                        publicationsMenu.classList.add('active');
+                    }
+                    break;
+                }
+            }
+        }
+
+        // 在页面大小改变时重新计算布局
+        window.addEventListener('resize', function() {
+            // 如果窗口宽度大于768px，恢复侧边栏显示
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
         });
     </script>
 </body>

@@ -1,155 +1,6 @@
-@charset "utf-8";
-
-/* 通用样式 */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f7fa;
-}
-
-body a {
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-div.content ul {
-    list-style: disc inside none;
-    list-style-position: outside;
-    margin-left: 1em;
-}
-
-div.content ol {
-    list-style: none inside none;
-}
-
-div.content li {
-    line-height: 30px;
-}
-
-div.content div.float-right {
-    float: right;
-}
-
-/* 侧边栏样式优化 */
-#sidebar {
-    position: fixed; /* 改为fixed使其在滚动时保持固定 */
-    top: 0;
-    left: 0;
-    overflow: auto;
-    background: linear-gradient(135deg, #1a2035 0%, #2d3755 100%); /* 渐变背景 */
-    width: 280px; /* 略微增加宽度 */
-    height: 100%;
-    box-shadow: 3px 0 15px rgba(0,0,0,0.15);
-    z-index: 100;
-    transition: all 0.3s ease;
-}
-
-/* 添加实验室logo区域 */
-#sidebar .lab-logo {
-    text-align: center;
-    padding: 25px 0 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin-bottom: 15px;
-}
-
-#sidebar .lab-logo h2 {
-    color: white;
-    margin: 0;
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-#sidebar .lab-logo span {
-    color: #4db6e0;
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-/* 个人资料区域 */
-#sidebar > img.me {
-    max-height: 120px;
-    max-width: 120px;
-    margin: 20px auto 10px;
-    border-radius: 50%;
-    display: block;
-    border: 3px solid rgba(255,255,255,0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-
-#sidebar > img.me:hover {
-    border-color: #4db6e0;
-    transform: scale(1.05);
-}
-
-#sidebar div.info {
-    color: white;
-    text-align: center;
-    padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin-bottom: 15px;
-}
-
-#sidebar div.info > .name {
-    font-family: "Lato", "Poppins", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: white;
-}
-
-#sidebar div.info > .name_chinese {
-    font-family: "Poppins", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 8px;
-}
-
-#sidebar div.info > .email {
-    font-size: 13px;
-    font-family: "Lato", "Poppins", Helvetica, Arial, sans-serif;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 10px;
-}
-
-#sidebar div.info > .link {
-    font-size: 13px;
-    font-weight: 500;
-}
-
-#sidebar div.info > .link > a {
-    color: #4db6e0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-#sidebar div.info > .link > a:hover {
-    color: white;
-}
-
-#sidebar div.info > .link > a:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    background-color: #4db6e0;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-#sidebar div.info > .link > a:hover:after {
-    transform: scaleX(1);
-}
-
-/* 导航菜单优化 - 添加子菜单支持 */
+/* 导航菜单优化 - 改进子菜单支持 */
 #navigation {
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 /* 导航项基本样式 */
@@ -157,10 +8,11 @@ div.content div.float-right {
 #navigation > div.nav_item {
     display: flex;
     align-items: center;
-    color: rgba(255,255,255,0.75);
+    justify-content: space-between; /* 让内容和图标分散对齐 */
+    color: rgba(255,255,255,0.85);
     cursor: pointer;
-    padding: 14px 25px;
-    margin: 5px 15px;
+    padding: 14px 20px;
+    margin: 8px 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
     background: rgba(255,255,255,0.08);
@@ -170,9 +22,16 @@ div.content div.float-right {
     overflow: hidden;
 }
 
+/* 导航项图标和文本容器 */
+.nav-item-content {
+    display: flex;
+    align-items: center;
+}
+
 /* 导航项图标 */
 #navigation > a.nav_item i,
-#navigation > div.nav_item i {
+#navigation > div.nav_item i,
+.nav-item-content i {
     margin-right: 10px;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -188,7 +47,9 @@ div.content div.float-right {
 
 /* 导航项悬停时的图标颜色 */
 #navigation > a.nav_item:hover i,
-#navigation > div.nav_item:hover i {
+#navigation > div.nav_item:hover i,
+#navigation > a.nav_item:hover .nav-item-content i,
+#navigation > div.nav_item:hover .nav-item-content i {
     color: #4db6e0;
 }
 
@@ -198,11 +59,13 @@ div.content div.float-right {
     background: rgba(77,182,224,0.15);
     color: white;
     border-left: 3px solid #4db6e0;
-    padding-left: 22px; /* 补偿边框宽度 */
+    padding-left: 17px; /* 补偿边框宽度 */
 }
 
 #navigation > a.nav_item.active i,
-#navigation > div.nav_item.active i {
+#navigation > div.nav_item.active i,
+#navigation > a.nav_item.active .nav-item-content i,
+#navigation > div.nav_item.active .nav-item-content i {
     color: #4db6e0;
 }
 
@@ -210,27 +73,44 @@ div.content div.float-right {
 .submenu-container {
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.3s ease-out;
-    margin: 0 15px;
+    transition: max-height 0.3s ease-out, opacity 0.2s ease;
+    margin: 0 20px 0 25px;
+    border-left: 1px dashed rgba(77,182,224,0.3);
+    opacity: 0;
 }
 
 /* 展开的子菜单 */
 .submenu-container.open {
     max-height: 300px; /* 足够高以容纳所有子菜单项 */
-    transition: max-height 0.5s ease-in;
+    opacity: 1;
+    transition: max-height 0.5s ease-in, opacity 0.3s ease 0.1s;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 /* 子菜单项 */
 .submenu-item {
-    display: block;
-    padding: 10px 10px 10px 45px; /* 左侧缩进 */
-    margin: 5px 0;
-    color: rgba(255,255,255,0.65);
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 4px 0;
+    color: rgba(255,255,255,0.7);
     background: rgba(255,255,255,0.05);
     border-radius: 6px;
     transition: all 0.3s ease;
     font-size: 14px;
     position: relative;
+    text-decoration: none;
+}
+
+.submenu-item:before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    background: rgba(77,182,224,0.3);
 }
 
 /* 子菜单项悬停效果 */
@@ -242,309 +122,19 @@ div.content div.float-right {
 
 /* 子菜单项活跃状态 */
 .submenu-item.active {
-    background: rgba(77,182,224,0.1);
+    background: rgba(77,182,224,0.15);
     color: #4db6e0;
     border-left: 2px solid #4db6e0;
+    padding-left: 13px; /* 补偿边框宽度 */
 }
 
 /* 切换按钮样式 */
 .toggle-icon {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     transition: transform 0.3s ease;
+    font-size: 12px;
 }
 
 /* 展开状态的切换按钮 */
 .nav_item.expanded .toggle-icon {
-    transform: translateY(-50%) rotate(180deg);
-}
-
-/* 添加底部版权信息 */
-#sidebar .copyright {
-    position: absolute;
-    bottom: 15px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,0.5);
-    padding: 0 20px;
-}
-
-/* 主内容区域调整 */
-#main {
-    position: absolute;
-    top: 0;
-    left: 280px; /* 匹配侧边栏宽度 */
-    right: 0;
-    bottom: 0;
-    overflow: auto;
-    min-width: 500px;
-    background-color: #f5f7fa;
-    transition: all 0.3s ease;
-}
-
-#logo {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 50px;
-    max-height: 80px;
-    transition: all 0.3s ease;
-}
-
-#logo:hover {
-    transform: scale(1.05);
-}
-
-#bio {
-    font-size: 1.4em;
-    font-weight: 600;
-    color: #333;
-}
-
-#main > div.content {
-    padding: 20px 50px;
-    line-height: 1.6;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #444;
-    background: white;
-    margin: 0 20px 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-#main > div.title {
-    padding: 25px 0;
-    margin: 0 50px;
-    border-bottom: 2px solid #4db6e0;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    font-weight: 700;
-    color: #1a2035;
-    position: relative;
-}
-
-#main > div.title:after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 4px;
-    bottom: -2px;
-    left: 0;
-    background-color: #4db6e0;
-}
-
-#main > div.subtitle {
-    padding: 15px 0;
-    margin: 0 50px;
-    margin-bottom: 10px;
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #333;
-}
-
-/* 保留原有时间线样式，修复重叠问题 */
-.timeline {
-    position: relative;
-    padding-left: 50px; /* 增加左侧间距，为日期标签留出空间 */
-    margin: 20px 0;
-}
-
-.timeline:before {
-    content: "";
-    position: absolute;
-    left: 20px; /* 调整线的位置 */
-    top: 0;
-    bottom: 0;
-    width: 2px; /* 保持原有的线宽 */
-    background: #0765A0; /* 保持原有的颜色 */
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px; /* 略微增加间距 */
-    padding-top: 10px; /* 添加顶部内边距，避免与日期重叠 */
-}
-
-.timeline-date {
-    position: absolute;
-    left: -40px; /* 调整日期位置 */
-    top: 0;
-    width: 70px; /* 增加宽度以适应更多文字 */
-    padding: 5px;
-    background: #0765A0; /* 保持原有的颜色 */
-    color: white;
-    text-align: center;
-    border-radius: 4px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 轻微增强阴影效果 */
-    z-index: 2; /* 确保日期在最上层 */
-}
-
-.timeline-content {
-    margin-left: 30px; /* 调整左侧边距，避免重叠 */
-    padding: 15px;
-    background: white;
-    border-radius: 4px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1); /* 轻微增强阴影效果 */
-    transition: all 0.3s ease;
-    position: relative; /* 设置为相对定位 */
-    z-index: 1; /* 确保内容在时间线上方，但在日期下方 */
-}
-
-/* 添加简单的悬停效果，但保持原有风格 */
-.timeline-content:hover {
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-.timeline-content h3 {
-    margin-top: 0;
-    color: #0765A0; /* 与时间线颜色保持一致 */
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-/* 团队成员网格优化 */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-}
-
-.team-member {
-    text-align: center;
-    padding: 25px;
-    background: white;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.team-member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.team-member img {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-    border: 4px solid #0765A0; /* 与时间线颜色保持一致 */
-    transition: all 0.3s ease;
-}
-
-.team-member:hover img {
-    border-color: #1a2035;
-    transform: scale(1.05);
-}
-
-.team-member h3 {
-    margin: 10px 0 5px;
-    color: #1a2035;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.team-member p {
-    color: #666;
-    font-size: 14px;
-    margin: 0;
-}
-
-/* 响应式设计 */
-@media (max-width: 992px) {
-    #sidebar {
-        width: 250px;
-    }
-
-    #main {
-        left: 250px;
-    }
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        width: 220px;
-        transform: translateX(-100%); /* 默认隐藏侧边栏 */
-        z-index: 1000;
-    }
-
-    #sidebar.active {
-        transform: translateX(0); /* 显示侧边栏 */
-    }
-
-    #main {
-        left: 0;
-    }
-
-    #main > div.title {
-        font-size: 1.6em;
-        padding: 20px 0;
-    }
-
-    #main > div.content {
-        padding: 15px 30px;
-    }
-}
-
-/* 页面加载动画 */
-.loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1a2035;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s, visibility 0.5s;
-}
-
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255,255,255,0.2);
-    border-top: 5px solid #4db6e0;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* 侧边栏切换按钮 */
-#sidebar-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    background: #1a2035;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-@media (max-width: 768px) {
-    #sidebar-toggle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    transform: rotate(180deg);
 }
