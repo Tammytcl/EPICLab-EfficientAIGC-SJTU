@@ -124,6 +124,76 @@
             transform: translateY(-50%) rotate(90deg);
         }
 
+        /* 刊物和工具样式 */
+        .publications ol {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .publications li {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .publications .imgblock {
+            float: left;
+            margin-right: 20px;
+            width: 180px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .publications .imgblock img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .publications .imgblock:hover img {
+            transform: scale(1.05);
+        }
+
+        .publications .title {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a2035;
+            margin-bottom: 8px;
+        }
+
+        .publications .info {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .publications .stuff {
+            margin-top: 10px;
+        }
+
+        .publications .stuff a {
+            color: #4db6e0;
+            transition: all 0.3s ease;
+        }
+
+        .publications .stuff a:hover {
+            color: #1a2035;
+            text-decoration: underline;
+        }
+
+        .text-success {
+            color: #28a745;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             #sidebar-toggle {
                 display: flex;
@@ -145,6 +215,14 @@
 
             #main.sidebar-active {
                 left: 220px;
+            }
+
+            .publications .imgblock {
+                float: none;
+                width: 100%;
+                height: auto;
+                margin-bottom: 15px;
+                margin-right: 0;
             }
         }
     </style>
@@ -284,9 +362,43 @@
                     <h3>Chang Zou</h3>
                     <p>视频生成技术</p>
                 </div>
-
-
             </div>
+        </div>
+
+        <!-- 论文发表部分 -->
+        <div class="title">
+            <a class="title_link" id="publications">论文发表</a>
+        </div>
+
+        <div class="content publications">
+            <p><i>* 表示通讯作者</i></p>
+            <ol>
+                <!-- 论文列表 -->
+                <li>
+                    <div class="imgblock">
+                        <img src="asserts/TaylorSeer/figures/method.png" alt="TaylorSeer方法图">
+                    </div>
+                    <span class="title">From Reusing to Forecasting: Accelerating Diffusion Models with TaylorSeers</span>
+                    <div class="info text-success italic">
+                        Jiacheng Liu, Chang Zou, Yuanhuiyi Lyu, Junjie Chen, Linfeng Zhang, <span style="font-weight:bold">Linfeng Zhang*</span>
+                    </div>
+
+                    <div class="stuff">
+                        [<a href="https://arxiv.org/abs/2503.06923">论文</a>]
+                        [<a href="https://taylorseer.github.io/TaylorSeer/">项目主页</a>]
+                        [<a href="https://github.com/Shenyi-Z/TaylorSeer">代码</a>]
+                    </div>
+                    <div style="clear:both"></div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- 工具部分 -->
+        <div class="title">
+            <a class="title_link" id="Tools">研究工具</a>
+        </div>
+        <div class="content">
+            <p>这里放我们开发的测指标脚本和工具</p>
         </div>
     </div>
 
@@ -357,7 +469,7 @@
             }, { threshold: 0.1 });
 
             // 设置初始透明度和位移
-            document.querySelectorAll('.timeline-item, .team-member').forEach(el => {
+            document.querySelectorAll('.timeline-item, .team-member, .publications li').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
                 el.style.transition = 'all 0.5s ease-out';
