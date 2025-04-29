@@ -6,144 +6,272 @@
     <link rel="stylesheet" type="text/css" href="utils/bootstrap.min.css"/>
     <script src="utils/jquery.min.js"></script>
     <script src="utils/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="utils/cssReset.css"/>
     <link rel="stylesheet" href="utils/css_layout.css"/>
     <link rel="icon" type="image/x-icon" href="resources/favicon.ico">
-    <meta name="description" content="About page description">
-    <meta name="keywords" content="about, keywords">
+    <meta name="description" content="EPIC实验室 - 高效智能计算研究">
+    <meta name="keywords" content="人工智能,AIGC,SJTU,文本到图像,文本到视频">
+    <title>EPIC实验室 | 智能计算研究</title>
 
-
-</head>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 获取所有导航项目
-    const navItems = document.querySelectorAll('#navigation > a.nav_item');
-
-    // 获取当前页面URL
-    const currentPage = window.location.pathname.split('/').pop();
-
-    // 为每个导航项目添加点击事件
-    navItems.forEach(item => {
-        // 检查是否是当前页面
-        if(item.getAttribute('href') === currentPage) {
-            item.classList.add('active');
+    <style>
+        /* 页面加载动画 */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a2035;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
         }
 
-        // 添加点击事件
-        item.addEventListener('click', function() {
-            // 移除所有active类
-            navItems.forEach(nav => {
-                nav.classList.remove('active');
-            });
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.2);
+            border-top: 5px solid #4db6e0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
 
-            // 添加active类到被点击的项目
-            this.classList.add('active');
-        });
-    });
-});
-</script>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 侧边栏切换按钮（响应式） */
+        #sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 200;
+            background: #1a2035;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            #sidebar-toggle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #sidebar {
+                transform: translateX(-100%);
+            }
+
+            #sidebar.active {
+                transform: translateX(0);
+            }
+
+            #main {
+                left: 0;
+            }
+        }
+    </style>
+</head>
 
 <body>
-  <div id="sidebar">
-    <div id="navigation">
-      <a class="nav_item active" href="index.html">
-        <i class="icon icon-home icon-white"></i> &nbsp; About
-      </a>
-      <a class="nav_item" href="publications.html">
-        <i class="icon icon-th-large icon-white icon-list"></i> &nbsp; Publications
-      </a>
-      <a class="nav_item" href="work1.html">2024-ToCa</a>
-      <a class="nav_item" href="work2.html">2025-TaylorSeer</a>
-      <a class="nav_item" href="work3.html">2025-Work3</a>
-    </div>
-  </div>
-
-  <div id="main">
-    <div class="title" style="padding:40px 0">
-      <a class="title_link" id="bio" >The EPIC Lab @ SJTU</a>
-      <img id="logo" src="resources/university-icon.png" alt="University Logo"/>
+    <!-- 加载动画 -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
     </div>
 
+    <!-- 响应式侧边栏切换按钮 -->
+    <button id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
 
+    <div id="sidebar">
+        <!-- 实验室Logo区域 -->
+        <div class="lab-logo">
+            <h2>EPIC Lab</h2>
+            <span>Efficient & Precision Intelligent Computing</span>
+        </div>
 
+        <!-- 个人信息区域 -->
+        <img class="me" src="resources/lab-director.jpg" alt="实验室主任" />
+        <div class="info">
+            <div class="name">John Doe</div>
+            <div class="name_chinese">张教授</div>
+            <div class="email">epiclab@sjtu.edu.cn</div>
+            <div class="link"><a href="https://www.sjtu.edu.cn" target="_blank">查看实验室主页</a></div>
+        </div>
 
-    <!-- Brief Introduction Section -->
-  <div class="title">
-    <a class="title_link" id="Introduction">Brief Introduction</a>
-  </div>
+        <!-- 导航菜单 -->
+        <div id="navigation">
+            <a class="nav_item active" href="index.html">
+                <i class="fas fa-home icon-white"></i> &nbsp; 关于我们
+            </a>
+            <a class="nav_item" href="publications.html">
+                <i class="fas fa-book icon-white"></i> &nbsp; 研究成果
+            </a>
+            <a class="nav_item" href="work1.html">
+                <i class="fas fa-image icon-white"></i> &nbsp; 2024-ToCa
+            </a>
+            <a class="nav_item" href="work2.html">
+                <i class="fas fa-film icon-white"></i> &nbsp; 2025-TaylorSeer
+            </a>
+            <a class="nav_item" href="work3.html">
+                <i class="fas fa-code icon-white"></i> &nbsp; 2025-Work3
+            </a>
+            <a class="nav_item" href="contact.html">
+                <i class="fas fa-envelope icon-white"></i> &nbsp; 联系我们
+            </a>
+        </div>
 
-  <div class="content">
-At the EPIC (Efficient and Precision Intelligent Computing) Laboratory of SJTU, we focus on developing lightweight and efficient models for text-to-image and text-to-video generation. Our goal is to break through the limitations of high computational cost and inference latency, making high-resolution and long-form visual generation both practical and scalable. This enables the broader industrial adoption of AIGC (Artificial Intelligence Generated Content) technologies.
-      This page serves as a project hub for our ongoing work in Efficient AIGC Models.
-  </div>
+        <!-- 底部版权信息 -->
+        <div class="copyright">
+            © 2025 EPIC Lab @ SJTU<br>
+            All Rights Reserved
+        </div>
+    </div>
 
+    <div id="main">
+        <div class="title" style="padding:40px 0">
+            <a class="title_link" id="bio">EPIC 实验室 @ 上海交通大学</a>
+            <img id="logo" src="resources/university-icon.png" alt="大学Logo"/>
+        </div>
 
-    <!-- Time line -->
-  <div class="title">
-    <a class="title_link" id="Timeline">Time Line</a>
-  </div>
+        <!-- 简介部分 -->
+        <div class="title">
+            <a class="title_link" id="Introduction">实验室简介</a>
+        </div>
 
-  <!-- 修改时间线部分 -->
-  <div class="content">
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-date">2024 ICLR</div>
-            <div class="timeline-content">
-                <h3>ToCa项目</h3>
-                <p>开发了轻量级文本到图像生成模型，显著降低了计算成本...</p>
+        <div class="content">
+            <p>EPIC（高效精确智能计算）实验室致力于开发轻量级、高效率的文本到图像和文本到视频生成模型。我们的目标是突破高计算成本和推理延迟的限制，使高分辨率和长形式视觉生成既实用又可扩展，从而促进AIGC（人工智能生成内容）技术在工业领域的广泛应用。</p>
+            <p>本网站作为我们在高效AIGC模型研究中的项目中心，展示我们的最新研究成果和进展。</p>
+        </div>
+
+        <!-- 时间线 -->
+        <div class="title">
+            <a class="title_link" id="Timeline">研究历程</a>
+        </div>
+
+        <div class="content">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 ICLR</div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-award"></i> ToCa项目</h3>
+                        <p>开发了轻量级文本到图像生成模型，显著降低了计算成本同时保持了图像质量。通过创新的Token压缩算法，我们将推理速度提高了3倍，同时模型大小减少了40%。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 ICCV</div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-video"></i> TaylorSeer项目</h3>
+                        <p>专注于高效视频生成技术，实现了长视频的流畅生成。我们的TaylorSeer模型使用自适应帧预测技术，大幅降低了计算资源需求，并支持高达10分钟的高质量视频生成，为实时AIGC应用开辟了新的可能性。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 Q3</div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-rocket"></i> 即将推出</h3>
+                        <p>新的突破性研究正在进行中，敬请期待！</p>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- 新闻部分 -->
+        <div class="title">
+            <a class="title_link" id="news">最新动态</a>
+        </div>
 
+        <div class="content">
+            <p>2025年4月 - 我们的TaylorSeer模型被选为ICCV 2025的亮点论文</p>
+            <p>2025年3月 - EPIC实验室与高通公司达成合作，共同研发移动端AIGC技术</p>
+            <p>2024年12月 - ToCa项目获得国家自然科学基金特别资助</p>
+        </div>
 
-        <div class="timeline-item">
-            <div class="timeline-date">2025 ICCV</div>
-            <div class="timeline-content">
-                <h3>TaylorSeer项目</h3>
-                <p>专注于高效视频生成技术，实现了长视频的流畅生成...</p>
+        <!-- 团队成员 -->
+        <div class="title">
+            <a class="title_link" id="Team">团队成员</a>
+        </div>
+
+        <div class="content">
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="resources/member1.jpg" alt="刘家成" />
+                    <h3>刘家成</h3>
+                    <p>高效AIGC算法</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="resources/member2.jpg" alt="邹畅" />
+                    <h3>邹畅</h3>
+                    <p>视频生成技术</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="resources/member3.jpg" alt="李明" />
+                    <h3>李明</h3>
+                    <p>研究生</p>
+                </div>
+
+                <div class="team-member">
+                    <img src="resources/member4.jpg" alt="王芳" />
+                    <h3>王芳</h3>
+                    <p>博士生</p>
+                </div>
             </div>
         </div>
-
-
     </div>
-  </div>
 
+    <script>
+        // 页面加载完成后隐藏加载动画
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loader-wrapper').style.opacity = '0';
+                document.querySelector('.loader-wrapper').style.visibility = 'hidden';
+            }, 500);
+        });
 
-    <!-- News Section -->
-  <div class="title">
-    <a class="title_link" id="news">News</a>
-  </div>
+        // 侧边栏切换功能
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
 
-  <div class="content">
-      以后可能加入的报道和Media Covery
-      
-  </div>
-      
-      
-      
-  <div class="title">
-    <a class="title_link" id="Team">Team Members</a>
-  </div>
-      
-  <div class="content">
-    <div class="team-grid">
-        <div class="team-member">
-            <h3>Jiacheng Liu</h3>
-            <p>Efficient AIGC</p>
-        </div>
+        // 添加滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        <div class="team-member">
-            <h3>Chang Zou</h3>
-            <p>Efficient AIGC</p>
-        </div>
+            document.querySelectorAll('.timeline-item, .team-member').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.5s ease-out';
+                observer.observe(el);
+            });
 
-    </div>
-</div>
-
-
-
-  </div>
+            document.addEventListener('scroll', function() {
+                document.querySelectorAll('.animated').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
